@@ -48,7 +48,9 @@ const addProduct = async (req, res, next) => {
    const {name,price,sale,quantity,description,category} = req.body;
    if(req.files) image = req.files[0].filename ;
     var newProduct = await productModel.create({ name,price,sale,quantity,description,category,inStock:'Yes',
-    imgURL:  `${req.protocol}://${req.hostname}:3000/${image}`});
+   // imgURL:  `${req.protocol}://${req.hostname}:3000/${image}`});
+     imgURL:  `${req.protocol}://${req.hostname}/${image}`});
+    
     Access(res); 
     res.status(200).send(newProduct);
     console.log(newProduct);
