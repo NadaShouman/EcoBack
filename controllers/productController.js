@@ -70,7 +70,7 @@ const editProductImage=async (req, res, next) => {
     try{
     const  {id}= req.params;
     console.log(req.file.filename);
-    imageupdate = `${req.protocol}://${req.hostname}:3000/${req.file.filename}`;
+    imageupdate = `${req.protocol}://${req.hostname}/${req.file.filename}`;
      await productModel.findByIdAndUpdate(id,{imgURL:imageupdate});
     Access(res);
     res.status(204).send({message:"product updated"});
