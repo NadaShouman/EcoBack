@@ -48,8 +48,9 @@ const addProduct = async (req, res, next) => {
    console.log(req.body);
   // console.log(req.file);
    const {name,price,sale,quantity,description,category} = req.body;
-      const result = await cloud.uploads(req.file.path);
-            imageUrl = result.url;
+    const result = await cloud.uploads(req.file.path);
+           imageUrl = result.url;
+  //  imageUrl= `${req.protocol}://${req.hostname}/${image}`;
   // if(req.files) image = req.files[0].filename ;
 //     var newProduct = await productModel.create({ name,price,sale,quantity,description,category,inStock:'Yes',
 //      imgURL:  `${req.protocol}://${req.hostname}/${image}`});
@@ -76,6 +77,8 @@ const editProductImage=async (req, res, next) => {
     try{
     const  {id}= req.params;
     console.log(req.file.filename);
+//          const result = await cloud.uploads(req.file.path);
+//            imageupdate = result.url;
     imageupdate = `${req.protocol}://${req.hostname}/${req.file.filename}`;
      await productModel.findByIdAndUpdate(id,{imgURL:imageupdate});
     Access(res);
