@@ -56,7 +56,7 @@ const addProduct = async (req, res, next) => {
     imgURL: imageUrl});
     
     Access(res); 
-     fs.unlinkSync(req.file.path);
+     //fs.unlinkSync(req.file.path);
     res.status(200).send(newProduct);
     console.log(newProduct);
 };
