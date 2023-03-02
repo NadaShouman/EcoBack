@@ -1,5 +1,6 @@
 const productModel =require("../models/productModel");
 const cloud = require('../cloudinaryConfig');
+const fs = require('fs');
 
 function Access (res){
     res.setHeader("Access-Control-Allow-Origin", "*")
