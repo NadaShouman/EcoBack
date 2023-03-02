@@ -55,7 +55,7 @@ const getOrderById = async(req, res) => {
     const addOrder = async (req, res, next) => { 
         const {productIds,userId,orderDate,totalPrice} = req.body; 
         console.log(req.body) 
-        var newOrder = await orderModel.create({productIds,userId,orderStatus:"pending",orderDate,totalPrice}); 
+        var newOrder = await orderModel.create({productIds,userId,orderStatus:"Pending",orderDate,totalPrice}); 
         Access(res); 
         res.status(200).send(newOrder); 
     };
