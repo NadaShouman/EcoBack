@@ -10,7 +10,7 @@ productsRouter.get('/' ,getAllProducts);
 productsRouter.get('/:id' ,getProductById);
 productsRouter.get('/price' ,getByPrice )
 //productsRouter.post("",productValidation,uploadImage().array('productImage'),addProduct);
-productsRouter.post("",uploadImage().array('productImage'),addProduct);
+productsRouter.post("",uploadImage().single('productImage'),addProduct);
 productsRouter.patch("/:id",editProduct)
 productsRouter.patch("/image/:id", uploadImage().single('productImage'),editProductImage)
 productsRouter.delete("/:id",deleteProduct )
