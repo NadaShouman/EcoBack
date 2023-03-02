@@ -77,11 +77,12 @@ const editProductImage=async (req, res, next) => {
     try{
     const  {id}= req.params;
     console.log(req.file.filename);
-//          const result = await cloud.uploads(req.file.path);
-//            imageupdate = result.url;
-    imageupdate = `${req.protocol}://${req.hostname}/${req.file.filename}`;
+         const result = await cloud.uploads(req.file.path);
+           imageupdate = result.url;
+   // imageupdate = `${req.protocol}://${req.hostname}/${req.file.filename}`;
      await productModel.findByIdAndUpdate(id,{imgURL:imageupdate});
     Access(res);
+      // fs.unlinkSync(req.file.path);
     res.status(204).send({message:"product updated"});
     }catch(error){
         next(error);
