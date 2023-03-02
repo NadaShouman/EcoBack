@@ -114,7 +114,7 @@ const editUser = async(req, res, next) => {
 const editUserImage = async (req, res, next) => {
   const { id } = req.params;
   const { authorization: token } = req.headers;
-  imageupdate = `${req.protocol}://${req.hostname}:3000/${req.file.filename}`;
+  imageupdate = `${req.protocol}://${req.hostname}/${req.file.filename}`;
   try {
   await authorizeUser(id, token);
     try {
