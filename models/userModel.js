@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var URL = `http://localhost:3000/defaultUser.png`;
+var URL = `http://eco-back-9qg1.onrender.com/defaultUser.png`;
 const userSchema = new mongoose.Schema({
   userName: 'string',
   email:'string',
