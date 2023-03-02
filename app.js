@@ -28,7 +28,8 @@ app.set("view engine", "ejs");
 
 const port = process.env.PORT || '3000';
 const corsOptions = {
-  origin: 'http://localhost:4200',
+//   origin: 'http://localhost:4200',
+     origin: 'https://eco-front-user.vercel.app',
   credentials: true,            //access-control-allow-credentials:true
   optionSuccessStatus: 200
 }
