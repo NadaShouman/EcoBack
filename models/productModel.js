@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var URL = `http://localhost:3000/defaultProduct.png`;
+var URL = `http://eco-back-9qg1.onrender.com/defaultProduct.png`;
 const productSchema = new mongoose.Schema({
   name: 'string',
   price:'number',
