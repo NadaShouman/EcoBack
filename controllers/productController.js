@@ -1,4 +1,5 @@
 const productModel =require("../models/productModel");
+const cloud = require('../cloudinaryConfig');
 
 function Access (res){
     res.setHeader("Access-Control-Allow-Origin", "*")
@@ -46,12 +47,16 @@ const addProduct = async (req, res, next) => {
    console.log(req.body);
   // console.log(req.file);
    const {name,price,sale,quantity,description,category} = req.body;
-   if(req.files) image = req.files[0].filename ;
-    var newProduct = await productModel.create({ name,price,sale,quantity,description,category,inStock:'Yes',
-   // imgURL:  `${req.protocol}://${req.hostname}:3000/${image}`});
-     imgURL:  `${req.protocol}://${req.hostname}/${image}`});
+      const result = await cloud.uploads(req.file.path);
+            imageUrl = result.url;
+  // if(req.files) image = req.files[0].filename ;
+//     var newProduct = await productModel.create({ name,price,sale,quantity,description,category,inStock:'Yes',
+//      imgURL:  `${req.protocol}://${req.hostname}/${image}`});
+     var newProduct = await productModel.create({ name,price,sale,quantity,description,category,inStock:'Yes',
+    imgURL: imageUrl});
     
     Access(res); 
+     fs.unlinkSync(req.file.path);
     res.status(200).send(newProduct);
     console.log(newProduct);
 };
