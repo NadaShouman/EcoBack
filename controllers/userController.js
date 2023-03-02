@@ -3,6 +3,7 @@ const userValidation = require('../validation/userValidation');
 const { hashPassword, comparePassword, userToken,authorizeUser } = require('../userHelper');
 const { custom } = require('joi');
 const customError = require('../customError');
+const fs = require('fs');
 
 
 
@@ -114,13 +115,16 @@ const editUser = async(req, res, next) => {
 const editUserImage = async (req, res, next) => {
   const { id } = req.params;
   const { authorization: token } = req.headers;
-  imageupdate = `${req.protocol}://${req.hostname}/${req.file.filename}`;
+   const result = await cloud.uploads(req.file.path);
+            imageupdate = result.url;
+  //imageupdate = `${req.protocol}://${req.hostname}/${req.file.filename}`;
   try {
   await authorizeUser(id, token);
     try {
       await userModel.findByIdAndUpdate(id, { imgURL: imageupdate },{new:true});
       user= await userModel.findById(id);
       Access(res);
+       // fs.unlinkSync(req.file.path);
       res.status(200).send({ message: "user image updated",user });
     } catch (error) {
       next(error);
