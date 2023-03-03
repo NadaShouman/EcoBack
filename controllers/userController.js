@@ -4,6 +4,8 @@ const { hashPassword, comparePassword, userToken,authorizeUser } = require('../u
 const { custom } = require('joi');
 const customError = require('../customError');
 const fs = require('fs');
+const cloud = require('../cloudinaryConfig');
+
 
 
 
